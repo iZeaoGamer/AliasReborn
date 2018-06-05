@@ -1,0 +1,9 @@
+---
+# select what to track.
+# ip = ip address (semi best)
+# uid = unique id (semi bad)
+# cid = client id (best)
+# xid = xbox id (bad)
+
+track: "cid"
+...
