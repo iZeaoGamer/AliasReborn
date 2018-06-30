@@ -39,30 +39,30 @@ $xb = $p->getXuid();
 $track = $this->getConfig()->get("track");
 if($track == strtolower("ip")){
 if(file_exists($this->getDataFolder() . "alias/" . $ip)){
-file_put_contents($this->getDataFolder() . "alias/" . $ip, $name . "\n", FILE_APPEND);
+file_put_contents($this->getDataFolder() . "alias/" . $ip, $name . ",\n", FILE_APPEND);
 } else {
-file_put_contents($this->getDataFolder() . "alias/" . $ip, $name . "\n");
+file_put_contents($this->getDataFolder() . "alias/" . $ip, $name . ",\n");
 }
 }
 if($track == strtolower("uid")){
 if(file_exists($this->getDataFolder() . "alias/" . $uid)){
-file_put_contents($this->getDataFolder() . "alias/" . $uid, $name . "\n", FILE_APPEND);
+file_put_contents($this->getDataFolder() . "alias/" . $uid, $name . ",\n", FILE_APPEND);
 } else {
-file_put_contents($this->getDataFolder() . "alias/" . $uid, $name . "\n");
+file_put_contents($this->getDataFolder() . "alias/" . $uid, $name . ",\n");
 }
 }
 if($track == strtolower("cid")){
 if(file_exists($this->getDataFolder() . "alias/" . $cid)){
-file_put_contents($this->getDataFolder() . "alias/" . $cid, $name . "\n", FILE_APPEND);
+file_put_contents($this->getDataFolder() . "alias/" . $cid, $name . ",\n", FILE_APPEND);
 } else {
-file_put_contents($this->getDataFolder() . "alias/" . $cid, $name . "\n");
+file_put_contents($this->getDataFolder() . "alias/" . $cid, $name . ",\n");
 }
 }
 if($track == strtolower("xid")){
 if(file_exists($this->getDataFolder() . "alias/" . $xb)){
-file_put_contents($this->getDataFolder() . "alias/" . $xb, $name . "\n", FILE_APPEND);
+file_put_contents($this->getDataFolder() . "alias/" . $xb, $name . ",\n", FILE_APPEND);
 } else {
-file_put_contents($this->getDataFolder() . "alias/" . $xb, $name . "\n");
+file_put_contents($this->getDataFolder() . "alias/" . $xb, $name . ",\n");
 }
 }
 }
@@ -79,16 +79,24 @@ $cid = $p->getClientId();
 $xb = $p->getXuid();
 $track = strtolower($this->getConfig()->get("track"));
 if($track == strtolower("ip")){
-$sender->sendMessage(file_get_contents($this->getDataFolder() . "alias/" . $ip, true));
+$contents = file_get_contents($this->getDataFolder() . "alias/" . $ip, true);
+$final_list = implode(", ", array_unique(explode(",\n", $contents)));
+$sender->sendMessage($final_list);
 }
 if($track == strtolower("uid")){
-$sender->sendMessage(file_get_contents($this->getDataFolder() . "alias/" . $uid, true));
+$contents = file_get_contents($this->getDataFolder() . "alias/" . $uid, true);
+$final_list = implode(", ", array_unique(explode(",\n", $contents)));
+$sender->sendMessage($final_list);
 }
 if($track == strtolower("cid")){
-$sender->sendMessage(file_get_contents($this->getDataFolder() . "alias/" . $cid, true));
+$contents = file_get_contents($this->getDataFolder() . "alias/" . $cid, true);
+$final_list = implode(", ", array_unique(explode(",\n", $contents)));
+$sender->sendMessage($final_list);
 }
 if($track == strtolower("xid")){
-$sender->sendMessage(file_get_contents($this->getDataFolder() . "alias/" . $xb, true));
+$contents = file_get_contents($this->getDataFolder() . "alias/" . $xb, true);
+$final_list = implode(", ", array_unique(explode(",\n", $contents)));
+$sender->sendMessage($final_list);
 }
 return true;
 } else {
