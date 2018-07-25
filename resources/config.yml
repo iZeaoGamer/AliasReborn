@@ -1,8 +1,8 @@
 ---
 # select what to track.
-# ip = ip address (semi best)
-# uid = unique id (semi bad)
-# cid = client id (best)
+# ip = ip address/router (best)
+# uid = unique id (bad)
+# cid = client id/device id (best)
 # xid = xbox id (bad)
 
 track: "cid"
