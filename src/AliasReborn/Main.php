@@ -36,11 +36,11 @@ use pocketmine\event\player\PlayerJoinEvent;
 					$file = explode(",\n", file_get_contents($this->getDataFolder() . "alias/" . $ip, true));
 					if(!in_array($name, $file)){
 						file_put_contents($this->getDataFolder() . "alias/" . $ip, $name . ",\n", FILE_APPEND);
-						$this->getLogger()->info("This seems to be an alt\nyou should look into it if this person has been banned before or not.");
+						$this->getLogger()->info("§aThis seems to be an alt\nyou should look into it if this person has been banned before or not.");
 					}
 					} else {
 						file_put_contents($this->getDataFolder() . "alias/" . $ip, $name . ",\n");
-						$this->getLogger()->info("No records found for this person.");
+						$this->getLogger()->info("§5No records found for this person.");
 					}
 				}
 			if(strtolower($track) === "uid"){
@@ -48,11 +48,11 @@ use pocketmine\event\player\PlayerJoinEvent;
 					$file = explode(",\n", file_get_contents($this->getDataFolder() . "alias/" . $uid, true));
 					if(!in_array($name, $file)){
 							file_put_contents($this->getDataFolder() . "alias/" . $uid, $name . ",\n", FILE_APPEND);
-						$this->getLogger()->info("This seems to be an alt\nyou should look into it if this person has been banned before or not.");
+						$this->getLogger()->info("§aThis seems to be an alt\nyou should look into it if this person has been banned before or not.");
 					}
 					} else {
 						file_put_contents($this->getDataFolder() . "alias/" . $uid, $name . ",\n");
-						$this->getLogger()->info("No records found for this person.");
+						$this->getLogger()->info("§5No records found for this person.");
 					}
 				}
 			if(strtolower($track) === "cid"){
@@ -60,11 +60,11 @@ use pocketmine\event\player\PlayerJoinEvent;
 					$file = explode(",\n", file_get_contents($this->getDataFolder() . "alias/" . $cid, true));
 					if(!in_array($name, $file)){
 							file_put_contents($this->getDataFolder() . "alias/" . $cid, $name . ",\n", FILE_APPEND);
-						$this->getLogger()->info("This seems to be an alt\nyou should look into it if this person has been banned before or not.");
+						$this->getLogger()->info("§aThis seems to be an alt\nyou should look into it if this person has been banned before or not.");
 					}
 					} else {
 						file_put_contents($this->getDataFolder() . "alias/" . $cid, $name . ",\n");
-						$this->getLogger()->info("No records found for this person.");
+						$this->getLogger()->info("§5No records found for this person.");
 					}
 				}
 			if(strtolower($track) === "xid"){
@@ -72,16 +72,16 @@ use pocketmine\event\player\PlayerJoinEvent;
 					$file = explode(",\n", file_get_contents($this->getDataFolder() . "alias/" . $xid, true));
 					if(!in_array($name, $file)){
 							file_put_contents($this->getDataFolder() . "alias/" . $xid, $name . ",\n", FILE_APPEND);
-						$this->getLogger()->info("This seems to be an alt.\nyou should look into it if this person has been banned before or not.");
+						$this->getLogger()->info("§aThis seems to be an alt.\nyou should look into it if this person has been banned before or not.");
 					}
 					} else {
 						file_put_contents($this->getDataFolder() . "alias/" . $xid, $name . ",\n");
-						$this->getLogger()->info("No records found for this person.");
+						$this->getLogger()->info("§5No records found for this person.");
 					}
 				}
 		}
 		
-		public function onCommand(CommandSender $sender, Command $command, $label, array $args): bool {
+		public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
 			switch(strtolower($command->getName())){
 				case "alias":
 				if(isset($args[0])){
@@ -95,30 +95,30 @@ use pocketmine\event\player\PlayerJoinEvent;
 						if(strtolower($track) === "ip"){
 							$contents = file_get_contents($this->getDataFolder() . "alias/" . $ip, true);
 							$final_list = implode(", ", array_unique(explode(",\n", $contents)));
-							$sender->sendMessage($final_list);
+							$sender->sendMessage("§aHere are the accounts this player is using on that ip: §b" $final_list);
 							}
 						if(strtolower($track) === "uid"){
 							$contents = file_get_contents($this->getDataFolder() . "alias/" . $uid, true);
 							$final_list = implode(", ", array_unique(explode(",\n", $contents)));
-							$sender->sendMessage($final_list);
+							$sender->sendMessage("§aHere are the accounts this player is using on that UID: §b" $final_list);
 							}
 						if(strtolower($track) === "cid"){
 							$contents = file_get_contents($this->getDataFolder() . "alias/" . $cid, true);
 							$final_list = implode(", ", array_unique(explode(",\n", $contents)));
-							$sender->sendMessage($final_list);
+							$sender->sendMessage("§aHere are the accounts this player is using on that CID: §b" $final_list);
 							}
 						if(strtolower($track) === "xid"){
 							$contents = file_get_contents($this->getDataFolder() . "alias/" . $xid, true);
 							$final_list = implode(", ", array_unique(explode(",\n", $contents)));
-							$sender->sendMessage($final_list);
+							$sender->sendMessage("§aHere are the accounts this player is using on that XID: §b" $final_list);
 							}
 							return true;
 						} else {
-						$sender->sendMessage("§cPlayer not online or does not exist.");
+						$sender->sendMessage("§2Player not online or does not exist.");
 						return false;
 						}
 					} else {
-					$sender->sendMessage("§cUsage: /alias <player>");
+					$sender->sendMessage("§dPlease use: §6/alias <player>");
 					return false;
 					}
 				break;
