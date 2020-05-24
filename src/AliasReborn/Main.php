@@ -24,7 +24,7 @@ use pocketmine\event\player\PlayerLoginEvent;
 			$this->getLogger()->info("Version: 2.0.0 for API: 3.0.0");
 			$this->seedevice = $this->getServer()->getPluginManager()->getPlugin("SeeDevice");
 		}
-		public function onLoad(PlayerLoginEvent $event){
+		public function onLogin(PlayerLoginEvent $event){
 					$p = $event->getPlayer();
 			$name = $p->getName();
 			$ip = $p->getAddress();
