@@ -25,7 +25,7 @@ use pocketmine\event\player\PlayerLoginEvent;
 			$this->seedevice = $this->getServer()->getPluginManager()->getPlugin("SeeDevice");
 		}
 		public function onLoad(PlayerLoginEvent $event){
-					$p = $e->getPlayer();
+					$p = $event->getPlayer();
 			$name = $p->getName();
 			$ip = $p->getAddress();
 			$uid = $p->getUniqueId();
@@ -68,7 +68,7 @@ use pocketmine\event\player\PlayerLoginEvent;
 					}
 $this->getLogger()->info("Device Checked.");
 				}
-	}
+	
 		public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
 			switch(strtolower($command->getName())){
 				case "alias":
@@ -87,13 +87,13 @@ $this->getLogger()->info("Device Checked.");
 								case "ip":
 $contents = file_get_contents($this->getDataFolder() . "alias/" . $ip, true);
 							$final_list = implode(", ", array_unique(explode(",\n", $contents)));
-							$sender->sendMessage("§aHere are the accounts this player is using on that ip: §b" $final_list);
+							$sender->sendMessage("§5Here are the accounts this player is using on that ip: §6". $final_list);
 							break;
 								case "device":
 									$modal = $this->seedevice->getUsd($p);
 							$contents = file_get_contents($this->getDataFolder() . "alias/" . $modal, true);
 							$final_list = implode(", ", array_unique(explode(",\n", $contents)));
-							$sender->sendMessage("§5Here are the accounts this player is using on that Device: §6" $final_list);
+							$sender->sendMessage("§5Here are the accounts this player is using on that Device: §6" . $final_list);
 							
 					break;
 							}
